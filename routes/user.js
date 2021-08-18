@@ -40,6 +40,13 @@ router.post("/signup", async (req, res) => {
             folder: `Marvel/userAvatar/${newUser._id}`,
           }
         );
+      } else {
+        newUser.account.avatar = await cloudinary.uploader.upload(
+          "https://res.cloudinary.com/draco-chris/image/upload/v1629298854/Marvel/userAvatar/611d20a54d5a720016990efe/oupvw6a5mroqjh7btdwq.png",
+          {
+            folder: `Marvel/userAvatar/${newUser._id}`,
+          }
+        );
       }
       await newUser.save();
       res.status(200).json({
